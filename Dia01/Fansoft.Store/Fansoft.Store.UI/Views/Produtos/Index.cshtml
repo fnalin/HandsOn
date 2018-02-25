@@ -1,11 +1,14 @@
-﻿
+﻿@model IEnumerable<Produto>
+
 @{
     ViewBag.Title = "Listagem de Produtos";
 }
 
 <h2>@ViewBag.Title</h2>
 
-
+<div>
+    <a class="btn btn-success" asp-action="AddEdit">Adicionar</a>
+</div>
 <table class="table table-striped table-hover table-responsive-sm">
     
     <thead class="thead-light">
@@ -13,6 +16,7 @@
             <th>Nome</th>
             <th>Tipo</th>
             <th>Valor</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -20,10 +24,21 @@
         {
         <tr>
             <td>@item.Nome</td>
-            <td>@item.TipoProduto</td>
+            <td>@item.TipoProduto.Nome</td>
             <td>@item.Valor</td>
+            <td>
+                <a class="btn btn-sm btn-warning" asp-action="AddEdit" asp-route-id="@item.Id">Editar</a>
+                <button class="btn btn-sm btn-danger" onclick="delProd('@item.Id','@item.Nome')">Excluir</button>
+            </td>
         </tr>
         }
     </tbody>
 
 </table>
+
+
+<script>
+    function delProd(id, nome) { 
+        alert('Excluindo o produto ' + nome);
+    }
+</script>

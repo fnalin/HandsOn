@@ -1,10 +1,21 @@
-﻿namespace Fansoft.Store.UI.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Fansoft.Store.UI.Models
 {
-    public class Produto
+    [Table("Produto")]
+    public class Produto : Entity
     {
-        public int Id { get; set; }
+
+        [Column(TypeName = "varchar(100)"), Required]
         public string Nome { get; set; }
+
+        [Column(TypeName = "money")]
         public decimal Valor { get; set; }
-        public string TipoProduto { get; set; }
+
+        public int TipoProdutoId { get; set; }
+
+        [ForeignKey(nameof(TipoProdutoId))]
+        public virtual TipoProduto TipoProduto { get; set; }
     }
 }

@@ -1,0 +1,33 @@
+﻿@model Produto
+
+@{
+    ViewBag.Title = "Adicionar Produto";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label>Nome</label>
+        <input type="text" asp-for="Nome" class="form-control" />
+        @*@Html.TextBoxFor(m=>m.Nome, new { @class="form-control"})*@
+        @*<input type="text" name="nome" value="@Model?.Nome" class="form-control" />*@
+    </div>
+
+    <div class="form-group">
+        <label>TipoProduto</label>
+        <select asp-for="TipoProdutoId" asp-items="@ViewBag.Tipos" class="form-control">
+            <option value="">Selecione ...</option>
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Valor</label>
+        <input type="text" asp-for="Valor" class="form-control" />
+    </div>
+
+    <button class="btn btn-secondary">Salvar</button>
+    <a class="btn btn-primary" href="Produtos">Voltar</a>
+</form>
+

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Fansoft.Store.UI.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,6 +22,12 @@ namespace Fansoft.Store.UI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                using (var ctx = new FanSoftStoreDataContext())
+                {
+                    DbInitializer.Init(ctx);
+
+                }
             }
 
             app.UseMvcWithDefaultRoute();
